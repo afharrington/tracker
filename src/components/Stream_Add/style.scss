@@ -1,0 +1,14 @@
+/* Basic styling for both plus and add_form components */
+
+.stream-add-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 200px;
+  height: 200px;
+  margin: 15px;
+  background-color: #CFD8DC;
+  font-size: 48px;
+  font-family: 'Work Sans', sans-serif;
+}

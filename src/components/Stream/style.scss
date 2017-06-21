@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Work+Sans');
+
+.stream-tile {
+  width: 200px;
+  height: 200px;
+  margin: 15px;
+  cursor: pointer;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #E0F2F1;
+  font-family: 'Work Sans', sans-serif;
+}
+
+.stream-name {
+  margin-top: 27.5%;
+  font-size: 24px;
+}
+
+.stream-minutes {
+  font-size: 24px;
+}

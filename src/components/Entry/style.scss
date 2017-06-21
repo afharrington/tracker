@@ -1,5 +1,5 @@
 .entry {
-  width: 500px;
+  width: 75%;
   margin: 0 auto;
   text-align: left;
   margin-top: 10px;
@@ -7,8 +7,26 @@
   background-color: #009688;
 }
 
-.time {
+.date {
   font-size: 14px;
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
+  display: inline-block;
+}
+
+.time {
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+.entry-content {
+  display: block;
+}
+
+.delete {
+  display: inline;
+  position: absolute;
+  color: white;
+  font-size: 16px;
+  right: 15%;
 }

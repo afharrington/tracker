@@ -1,14 +1,56 @@
 .entry-add-form {
-  width: 500px;
+  width: 75%;
   margin: 0 auto;
-  text-align: center;
   color: black;
   margin-top: 10px;
   padding: 10px;
   background-color: #CFD8DC;
   cursor: pointer;
+  text-align: center;
 }
 
-.exit {
-  width: 10px;
+.entry-exit {
+  position: absolute;
+  top: 22%;
+  right: 14%;
+  color: black;
+  font-size: 30px;
+}
+
+.field-container {
+  display: inline;
+}
+
+.details {
+  text-align: center; // formats placeholder
+  display: block; // keeps field on its own line
+  margin-top: 10px;
+  margin-left: 15%;
+  width: 70%;
+  max-width: 600px;
+  height: 50px;
+  font-size: 16px;
+}
+
+textarea {
+  resize: none;
+}
+
+.hours, .min {
+  width: 50px;
+  margin: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.submit-button {
+  border: none;
+  background-color: #009688;
+  color: white;
+  font-size: 16px;
+  padding: 5px 10px 5px 10px;
+}
+
+.button-container {
+  text-align: center;
 }

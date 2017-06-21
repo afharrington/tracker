@@ -5,7 +5,7 @@ import "./style.scss";
 const EntryAddPlus = (props) => {
   return (
     <div className="entry-plus" onClick={props.onClick}>
-      <p className="plus">+</p>
+      <div className="plus">+</div>
     </div>
   );
 }

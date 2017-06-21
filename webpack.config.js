@@ -31,6 +31,10 @@ module.exports = {
       },
       {
         include: /\.json$/, loaders: ["json-loader"]
+      },
+      {
+        test: /\.svg$/,
+        loader: "babel!react-svg"
       }
     ]
   }

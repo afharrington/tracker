@@ -2,26 +2,57 @@ import React from 'react';
 import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { createEntry } from "../../actions";
-
-import { fetchEntries } from "../../actions";
+import { createEntry, fetchEntries } from "../../actions";
 
 import "./style.scss";
 
 class EntryAddForm extends React.Component {
   constructor(props) {
     super(props);
-
   }
 
-  // This function responsible for actually rendering the JSX
-  renderField(field) {
+  // This function responsible for actually rendering the field JSX
+  renderTextField(field) {
     return (
-      <div className="entry-add-form">
-        <label>{field.label}</label>
-        <input type="text" {...field.input} />
+      <div className="field-container">
+        <textarea
+          className={field.styleclass}
+          type="text"
+          placeholder={field.placeholder}
+          {...field.input}
+        />
       </div>
     );
+  }
+
+  renderNumberField(field) {
+    return (
+      <div className="field-container">
+        <input
+          className={field.styleclass}
+          type="number"
+          min={field.min}
+          max={field.max}
+          placeholder={field.placeholder}
+          {...field.input}
+        />
+      </div>
+    )
+  }
+
+  renderNumbersField(field) {
+    return (
+      <div className="field-container">
+        <input
+          className={field.styleclass}
+          type="number"
+          min={field.min}
+          max={field.max}
+          {...field.input}
+        />
+        <label>{field.label}</label>
+      </div>
+    )
   }
 
   onSubmit(values) {
@@ -36,15 +67,35 @@ class EntryAddForm extends React.Component {
     const { handleSubmit } = this.props;
 
     return (
-      <div>
-        <div className="exit" onClick={this.props.onExit}>X</div>
+      <div className="entry-add-form">
+        <div className="entry-exit" onClick={this.props.onExit}>x</div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <Field
             label="Details"
             name="content"
-            component={this.renderField}
+            placeholder="Enter Details"
+            styleclass="details"
+            component={this.renderTextField}
           />
-          <button type="submit">Submit</button>
+          <Field
+            label="Hrs"
+            name="hours"
+            styleclass="hours"
+            component={this.renderNumbersField}
+            min="0"
+            max="23"
+          />
+          <Field
+            label="Min"
+            name="minutes"
+            styleclass="min"
+            component={this.renderNumbersField}
+            min="0"
+            max="59"
+          />
+          <div className="button-container">
+            <button className="submit-button" type="submit">Add</button>
+          </div>
         </form>
       </div>
     );
