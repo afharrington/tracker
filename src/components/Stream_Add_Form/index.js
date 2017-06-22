@@ -28,7 +28,7 @@ class StreamAddForm extends React.Component {
   onSubmit(values) {
     this.props.createStream(values, () => {
       this.props.onExit();
-      this.props.fetchStream();
+      this.props.fetchStreams();
     });
   }
 

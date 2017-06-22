@@ -10,9 +10,10 @@ export const DELETE_ENTRY = "delete_entry";
 
 const ROOT_URL = "http://localhost:3000";
 
+// STREAMS:
+
 export function fetchStreams() {
   const request = axios.get(`${ROOT_URL}`);
-
   return {
     type: FETCH_STREAMS,
     payload: request
@@ -22,7 +23,6 @@ export function fetchStreams() {
 export function createStream(values, callback) {
   const request = axios.post(`${ROOT_URL}`, values)
     .then(() => callback());
-
   return {
     type: CREATE_STREAM,
     payload: request
@@ -31,17 +31,16 @@ export function createStream(values, callback) {
 
 export function deleteStream(id) {
   const request = axios.delete(`${ROOT_URL}/${id}`);
-
   return {
     type: DELETE_STREAM,
     payload: id
   }
 }
 
+// ENTRIES:
 
 export function fetchEntries() {
   const request = axios.get(`${ROOT_URL}/entries`);
-
   return {
     type: FETCH_ENTRIES,
     payload: request
@@ -51,7 +50,6 @@ export function fetchEntries() {
 export function createEntry(values, callback) {
   const request = axios.post(`${ROOT_URL}/entries`, values)
     .then(() => callback());
-
   return {
     type: CREATE_ENTRY,
     payload: request
@@ -60,7 +58,6 @@ export function createEntry(values, callback) {
 
 export function deleteEntry(id) {
   const request = axios.delete(`${ROOT_URL}/entries/${id}`);
-
   return {
     type: DELETE_ENTRY,
     payload: id

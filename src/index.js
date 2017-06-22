@@ -7,8 +7,8 @@ import promise from "redux-promise";
 
 import EntryList from "./containers/Entry_List/index.js";
 import StreamList from "./containers/Stream_List/index.js";
-import reducers from "./reducers";
 
+import reducers from "./reducers";
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 ReactDOM.render(
