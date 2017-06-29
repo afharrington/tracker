@@ -1,13 +1,20 @@
 // entry_list container is fetches data for one skill and renders entry subcomponents
+
+// right now, Entry List is fetching directly from the redux store vs. having props passed down
+// from StreamList, because I want users to have access to entry data by going to the Stream
+// route directly. But check if this is the right way to do this. Not currently using the
+// fetchEntries API route.
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 import _ from "lodash";
 
 import { connect } from "react-redux";
-import { fetchEntries } from "../../actions";
+import { fetchStreams } from "../../actions";
 
 import Entry from "../../components/Entry";
 import EntryAdd from "../../components/Entry_Add";
 import StreamDelete from "../../components/Stream_Delete";
+// need have ability to delete an entry here too
 import "./style.scss";
 
 class EntryList extends Component {
@@ -22,26 +29,33 @@ class EntryList extends Component {
   }
 
   // once component mounts to DOM, fetchEntries from the database
-  componentDidMount() {
-    this.props.fetchEntries();
+  componentWillMount() {
+    this.props.fetchStreams();
   }
 
   renderEntries() {
-    // map over the entries object and create an entry component for each
+    // need to find a better way to do this using callbacks / Thunk so
+    // the component will never receive undefined and I can delete these
+    // if statements
+    let streamObj = this.props.streams["594af868fba64414c3dc1da2"];
+    let entries;
+    if (streamObj) {
+      entries = streamObj.entries;
+    }
 
-    // TO DO this.props.entries will be FULL list right now, want to iterate over first 10 only
-    return _.map(this.props.entries, entry => {
-      return (
-        <Entry
-          key={entry._id}
-          id={entry._id}
-          hours={entry.hours}
-          minutes={entry.minutes}
-          content={entry.content}
-          date={entry.created_date}
-        />
-      );
-    });
+    if (entries) {
+      return _.map(entries, entry => {
+        return (
+          <Entry
+            key={entry._id}
+            id={entry._id}
+            minutes={entry.minutes}
+            content={entry.content}
+            date={entry.created_date}
+          />
+        );
+      });
+    }
   }
 
   render() {
@@ -60,8 +74,8 @@ class EntryList extends Component {
 
 // maps app state to props that can be used in this component as this.props.entries
 function mapStateToProps(state) {
-  return { entries: state.entries };
+  return { streams: state.streams };
 }
 
 // connects this component with the fetchEntries action creator
-export default connect(mapStateToProps, { fetchEntries })(EntryList);
+export default connect(mapStateToProps, { fetchStreams })(EntryList);

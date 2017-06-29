@@ -4,7 +4,7 @@ export const FETCH_STREAMS = "fetch_streams";
 export const CREATE_STREAM = "create_streams";
 export const DELETE_STREAM = "delete_stream";
 
-export const FETCH_ENTRIES = "fetch_entries";
+// export const FETCH_ENTRIES = "fetch_entries";
 export const CREATE_ENTRY = "create_entry";
 export const DELETE_ENTRY = "delete_entry";
 
@@ -40,12 +40,14 @@ export function deleteStream(id) {
 // ENTRIES:
 
 export function fetchEntries() {
-  const request = axios.get(`${ROOT_URL}/entries`);
+  const request = axios.get(`${ROOT_URL}/entries/594af868fba64414c3dc1da2/`);
+
   return {
     type: FETCH_ENTRIES,
     payload: request
   };
 }
+
 
 export function createEntry(values, callback) {
   const request = axios.post(`${ROOT_URL}/entries`, values)

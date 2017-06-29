@@ -12,7 +12,7 @@ import "./style.scss";
 
 class StreamList extends Component {
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.fetchStreams();
   }
 
@@ -43,7 +43,7 @@ class StreamList extends Component {
   }
 }
 
-// Connects this component to the Redux store 
+// Connects this component to the Redux store
 function mapStateToProps(state) {
   return { streams: state.streams };
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import Moment from "react-moment";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { deleteEntry } from "../../actions";
 
@@ -16,12 +17,14 @@ class Entry extends React.Component {
 
   render() {
     return (
-      <div className="entry">
-        <Moment className="date" format="dddd, MMMM Do YYYY, h:mm a">{this.props.date}</Moment>
-        <p className="delete" onClick={this.onDeleteClick.bind(this)}>X</p>
-        <div className="entry-content">{this.props.content}</div>
-        <div className="time">{this.props.hours} hrs {this.props.minutes} min</div>
-      </div>
+
+        <div className="entry">
+          <Moment className="date" format="dddd, MMMM Do YYYY, h:mm a">{this.props.date}</Moment>
+          <p className="delete" onClick={this.onDeleteClick.bind(this)}>X</p>
+          <div className="entry-content">{this.props.content}</div>
+          <div className="time">{this.props.minutes} min</div>
+        </div>
+
     );
   }
 }
