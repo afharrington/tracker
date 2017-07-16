@@ -12,14 +12,14 @@ class Stream extends React.Component {
     return (
       <div className="stream-tile">
         <div className="stream-name">{this.props.name}</div>
-        <div className="stream-minutes">{this.props.minutes}</div>
+        <div className="stream-minutes">{this.props.totalMinutes}</div>
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return { streams: state.streams };
+  return { totalMinutes: state.entries.totalMinutes };
 }
 
 export default connect(mapStateToProps)(Stream);

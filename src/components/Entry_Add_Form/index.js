@@ -2,7 +2,7 @@ import React from 'react';
 import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { createEntry, fetchEntries } from "../../actions";
+import { createEntry } from "../../actions";
 
 import "./style.scss";
 
@@ -25,21 +25,6 @@ class EntryAddForm extends React.Component {
     );
   }
 
-  renderNumberField(field) {
-    return (
-      <div className="field-container">
-        <input
-          className={field.styleclass}
-          type="number"
-          min={field.min}
-          max={field.max}
-          placeholder={field.placeholder}
-          {...field.input}
-        />
-      </div>
-    )
-  }
-
   renderNumbersField(field) {
     return (
       <div className="field-container">
@@ -55,11 +40,17 @@ class EntryAddForm extends React.Component {
     )
   }
 
+  // convert hours to minutes before sending to createEntry action
   onSubmit(values) {
-    console.log("props:", this.props);
-    this.props.createEntry(values, () => {
+    let hoursInMinutes = values.hours * 60;
+    let formattedValues = {
+      content: values.content,
+      minutes: Number(values.minutes) + Number(hoursInMinutes)
+    };
+
+    // dispatch createEntry then call onExit function to exit form
+    this.props.createEntry(formattedValues, this.props.streamId, () => {
       this.props.onExit();
-      this.props.fetchEntries();
     });
   }
 
@@ -105,5 +96,5 @@ class EntryAddForm extends React.Component {
 export default reduxForm({
   form: "EntryAddForm"
 })(
-  connect(null, { createEntry, fetchEntries })(EntryAddForm)
+  connect(null, { createEntry })(EntryAddForm)
 );

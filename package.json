@@ -36,6 +36,7 @@
     "expres": "0.0.5",
     "express": "^4.15.3",
     "foreman": "^2.0.0",
+    "json-loader": "^0.5.4",
     "lodash": "^3.10.1",
     "marked": "^0.3.6",
     "moment": "^2.18.1",

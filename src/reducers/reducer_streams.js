@@ -6,7 +6,9 @@ export default function(state = {}, action) {
 
     // Turns the array of streams returned into an object with _id values as keys
     case FETCH_STREAMS:
-      return _.mapKeys(action.payload.data, "_id");
+      return {
+        streams: _.mapKeys(action.payload.data, "_id")
+      }
     case DELETE_STREAM:
       return _.omit(state, action.payload);
     default:

@@ -24,7 +24,7 @@ class EntryAdd extends React.Component {
 
   render() {
     let display = this.state.formVisible ?
-      <EntryAddForm onExit={this.handleExitForm}/>
+      <EntryAddForm onExit={this.handleExitForm} streamId={this.props.streamId}/>
     : <EntryAddPlus onClick={this.handleClick}/>;
 
     return (

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import _ from "lodash";
 
 import { fetchStreams } from "../../actions";
-
+import { Link } from "react-router-dom"
 import Stream from "../../components/Stream";
 import StreamAdd from "../../components/Stream_Add";
 
@@ -16,16 +16,24 @@ class StreamList extends Component {
     this.props.fetchStreams();
   }
 
+  // this will be called if stream is deleted in Entry_List component and user
+  // is redirected to this page
+  componentDidUpdate(){
+    this.props.fetchStreams();
+  }
+
   // Creates a stream tile for each stream in the list
   renderStreams() {
     return _.map(this.props.streams, stream => {
+      let streamId = stream._id;
       return (
-        <Stream
-          key={stream._id}
-          id={stream._id}
-          name={stream.name}
-          minutes={stream.minutes}
-        />
+        <Link to={`/stream/${streamId}`}>
+          <Stream
+            key={streamId}
+            id={streamId}
+            name={stream.name}
+          />
+        </Link>
       );
     });
   }
@@ -45,7 +53,9 @@ class StreamList extends Component {
 
 // Connects this component to the Redux store
 function mapStateToProps(state) {
-  return { streams: state.streams };
+  return {
+    streams: state.streams.streams
+  };
 }
 
 // Connects this component with fetchStreams action creator
