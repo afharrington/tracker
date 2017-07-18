@@ -2,7 +2,7 @@ import React from 'react';
 import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { createEntry } from "../../actions";
+import { createEntry, fetchEntries } from "../../actions";
 
 import "./style.scss";
 
@@ -51,6 +51,7 @@ class EntryAddForm extends React.Component {
     // dispatch createEntry then call onExit function to exit form
     this.props.createEntry(formattedValues, this.props.streamId, () => {
       this.props.onExit();
+      this.props.fetchEntries(this.props.streamId);
     });
   }
 
@@ -96,5 +97,5 @@ class EntryAddForm extends React.Component {
 export default reduxForm({
   form: "EntryAddForm"
 })(
-  connect(null, { createEntry })(EntryAddForm)
+  connect(null, { createEntry, fetchEntries })(EntryAddForm)
 );

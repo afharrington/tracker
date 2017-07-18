@@ -1,5 +1,4 @@
 // Shows list of all entries + delete button for the entire stream
-
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router";
@@ -28,14 +27,8 @@ class EntryList extends Component {
     };
   }
 
-  // fetchEntries action makes a GET request and when resolved, dispatches the response
-  // to the entries reducer, whose state can be accessed here with this.props.entries
-  componentWillMount() {
-    this.props.fetchEntries(this.state.streamId);
-  }
-
-  // this will be called if entries are added or deleted
-  componentDidUpdate() {
+  // this will fetch ONLY the entries needed for this stream
+  componentDidMount() {
     this.props.fetchEntries(this.state.streamId);
   }
 
@@ -43,27 +36,30 @@ class EntryList extends Component {
   // findIndex returns the index of the first element in array that satisfies the function condition
   // (in this case, the first time the entry's id matches the id argument passed in)
   deleteEntry(_id) {
-    const currentEntries = this.props.entries;
+    const currentEntries = this.props.stream.entries;
     const indexToDelete = currentEntries
       .findIndex(
         function(entry) {
           return entry._id === _id;
         }
       )
-    this.props.deleteEntry(this.state.streamId, indexToDelete);
-
+    this.props.deleteEntry(this.state.streamId, indexToDelete, () => {
+      this.props.fetchEntries(this.state.streamId);
+    });
   }
 
   // dispatches the deleteStream action, which will make a DELETE request and
   // reducers will update the streams piece of state
   // user will then be redirected to the main streams page
   deleteStream() {
-    this.props.deleteStream(this.state.streamId);
-    this.setState({redirect: true});
+    this.props.deleteStream(this.state.streamId, () => {
+      this.props.history.push("/");
+    });
+    // this.setState({redirect: true});
   }
 
   renderTotalMinutes() {
-    let totalMinutes = this.props.totalMinutes;
+    let totalMinutes = this.props.stream.totalMinutes;
     let hours = Math.floor(totalMinutes / 60);
     let minutes = totalMinutes % 60;
 
@@ -72,31 +68,38 @@ class EntryList extends Component {
     )
   }
 
+  // map over array of entries, creating an Entry component for each
   renderEntries() {
-      return _.map(this.props.entries, entry => {
-        return (
+    const entries = this.props.stream.entries;
+    return entries.map((entry) => {
+      return (
           <Entry
-          key={entry._id}
-          id={entry._id}
-          content={entry.content}
-          hours={entry.hours}
-          minutes={entry.minutes}
-          onClick={this.deleteEntry.bind(this, entry._id)}
+            key={entry._id}
+            content={entry.content}
+            minutes={entry.minutes}
+            onClick={this.deleteEntry.bind(this, entry._id)}
           />
-        );
-      });
-    }
+      );
+    });
+
+  }
 
   // redirect to main streams page if this entire stream is deleted
   render() {
-    const {redirect} = this.state;
-    if (redirect) {
-      return <Redirect to="/" />
+    // const {redirect} = this.state;
+    // if (redirect) {
+    //   return <Redirect to="/" />
+    // }
+
+    // if the stream hasn't loaded yet ...
+    const { stream } = this.props;
+    if (!stream) {
+      return <div>"Loading..."</div>
     }
 
     return (
       <div>
-        {this.renderTotalMinutes()}
+        <div>{this.renderTotalMinutes()}</div>
         <div className="entry-list-container">
           <EntryAdd streamId={this.state.streamId}/>
           {this.renderEntries()}
@@ -107,11 +110,10 @@ class EntryList extends Component {
   }
 }
 
-// maps app state to props that can be used in this component as this.props.entries
-function mapStateToProps(state) {
+// allows this component to access JUST its own stream
+function mapStateToProps(state, ownProps) {
   return {
-    entries: state.entries.entries,
-    totalMinutes: state.entries.totalMinutes
+    stream: state.streams[ownProps.match.params.streamId]
   };
 }
 

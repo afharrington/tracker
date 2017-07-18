@@ -34,8 +34,9 @@ export function createStream(values, callback) {
   };
 }
 
-export function deleteStream(id) {
-  const request = axios.delete(`${ROOT_URL}/stream/${id}`);
+export function deleteStream(id, callback) {
+  const request = axios.delete(`${ROOT_URL}/stream/${id}`)
+    .then(() => callback());
   return {
     type: DELETE_STREAM,
     payload: id
@@ -43,12 +44,36 @@ export function deleteStream(id) {
 }
 
 // ENTRIES:
+// export function fetchEntries(streamId) {
+//   return function(dispatch) {
+//     axios.get(`${ROOT_URL}/stream/${streamId}`)
+//       .then(function(response){
+//         dispatch({type: FETCH_ENTRIES, payload: response})
+//       })
+//       .catch(function(err) {
+//         // dispatch({type: FETCH_ENTRIES_REJECTED, payload: err})
+//         console.log(err);
+//       })
+//   }
+// }
+
 export function fetchEntries(streamId) {
+  const request = axios.get(`${ROOT_URL}/stream/${streamId}`)
+  return {
+    type: FETCH_ENTRIES,
+    payload: request
+  };
+}
+
+
+// ENTRIES:
+export function createEntry(values, streamId, callback) {
   return function(dispatch) {
-    axios.get(`${ROOT_URL}/stream/${streamId}`)
+    axios.post(`${ROOT_URL}/stream/${streamId}`, values)
       .then(function(response){
-        dispatch({type: FETCH_ENTRIES, payload: response})
+        dispatch({type: CREATE_ENTRY, payload: response});
       })
+      .then(() => callback())
       .catch(function(err) {
         // dispatch({type: FETCH_ENTRIES_REJECTED, payload: err})
         console.log(err);
@@ -57,25 +82,47 @@ export function fetchEntries(streamId) {
 }
 
 
-export function createEntry(values, streamId, callback) {
-  const request = axios.post(`${ROOT_URL}/stream/${streamId}`, values)
+// export function createEntry(values, streamId, callback) {
+//   const request = axios.post(`${ROOT_URL}/stream/${streamId}`, values)
+//     .then(() => callback());
+//   return {
+//     type: CREATE_ENTRY,
+//     payload: values
+//   };
+// }
+
+// export function createEntry(values, streamId, callback) {
+//   return function(dispatch){
+//     axios.post(`${ROOT_URL}/stream/${streamId}`, values)
+//     .then(function(response){
+//       dispatch({type: CREATE_ENTRY, payload: response})
+//     .then(() => callback());
+//     })
+//     .catch(function(err){
+//       console.log("error creating entry ", err);
+//     })
+//   }
+// }
+
+// response will be the entire stream, with that one entry deleted
+// export function deleteEntry(streamId, entryIndex) {
+//   return function(dispatch) {
+//     axios.delete(`${ROOT_URL}/stream/${streamId}/entry/${entryIndex}`)
+//     .then(function(response){
+//       dispatch({type: DELETE_ENTRY, payload: response})
+//     })
+//     .catch(function(err) {
+//       // dispatch({type: DELETE_ENTRY_REJECTED, payload: err})
+//       console.log(err);
+//     })
+//   }
+// }
+
+export function deleteEntry(streamId, entryIndex, callback) {
+  const request = axios.delete(`${ROOT_URL}/stream/${streamId}/entry/${entryIndex}`)
     .then(() => callback());
   return {
-    type: CREATE_ENTRY,
+    type: DELETE_ENTRY,
     payload: request
   };
-}
-
-
-export function deleteEntry(streamId, entryIndex) {
-  return function(dispatch) {
-    axios.delete(`${ROOT_URL}/stream/${streamId}/entry/${entryIndex}`)
-    .then(function(response){
-      dispatch({type: DELETE_ENTRY, payload: response})
-    })
-    .catch(function(err) {
-      // dispatch({type: DELETE_ENTRY_REJECTED, payload: err})
-      console.log(err);
-    })
-  }
 }
