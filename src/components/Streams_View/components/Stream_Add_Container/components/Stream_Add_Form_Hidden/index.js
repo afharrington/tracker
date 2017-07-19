@@ -4,8 +4,8 @@ import "./style.scss";
 
 const StreamAddFormHidden = (props) => {
   return (
-    <div className="stream-add-plus" onClick={props.onClick}>
-      <div className="stream-plus">+</div>
+    <div className="stream-form-hidden" onClick={props.onClick}>
+      <p className="stream-form-plus">+</p>
     </div>
   );
 }

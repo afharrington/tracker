@@ -1,5 +1,17 @@
-@import url('https://fonts.googleapis.com/css?family=Work+Sans');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100');
 
-.stream-add-plus {
+.stream-form-hidden {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  color: black;
   cursor: pointer;
+}
+
+.stream-form-plus {
+  font-size: 80px;
+  font-family: 'Montserrat', sans-serif;
 }

@@ -1,14 +1,19 @@
-@import url('https://fonts.googleapis.com/css?family=Work+Sans');
+@import url('https://fonts.googleapis.com/css?family=Roboto:100');
 
-.stream-list-container {
+// Entire page
+.streams-view {
   text-align: center;
-  font-family: 'Work Sans', sans-serif;
-  font-size: 36px;
+  font-family: 'Roboto', sans-serif;
 }
 
-.stream-list-container {
+.page-title {
+  font-size: 48px;
+}
+
+// Grid of all tiles, including the Add tile
+.streams-grid {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
+  justify-content: center;
   margin-top: 50px;
 }

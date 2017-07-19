@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import Moment from "react-moment";
 import FontAwesome from "react-fontawesome";
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import "./style.scss";
 

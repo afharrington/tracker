@@ -1,20 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400');
+
 .entry-add-form {
   width: 75%;
   margin: 0 auto;
   color: black;
   margin-top: 10px;
   padding: 10px;
-  background-color: #CFD8DC;
   cursor: pointer;
   text-align: center;
+  font-family: 'Roboto', sans-serif;
 }
 
-.entry-exit {
-  position: absolute;
-  top: 22%;
-  right: 14%;
-  color: black;
-  font-size: 30px;
+.cancel {
+  display: inline-block;
+  margin-left: 75%;
+  color: #b71c1c;
+  font-size: 12px;
 }
 
 .field-container {
@@ -22,18 +23,19 @@
 }
 
 .details {
-  text-align: center; // formats placeholder
+  text-align: left; // formats placeholder
   display: block; // keeps field on its own line
-  margin-top: 10px;
-  margin-left: 15%;
-  width: 70%;
-  max-width: 600px;
+  width: 100%;
   height: 50px;
   font-size: 16px;
+  font-weight: 300;
 }
 
 textarea {
   resize: none;
+  box-sizing: border-box;
+  padding: 10px;
+  border-color: #B0BEC5;
 }
 
 .hours, .min {
@@ -41,13 +43,16 @@ textarea {
   margin: 10px;
   text-align: center;
   font-size: 14px;
+  border: 1px solid #B0BEC5;
 }
 
-.submit-button {
+.save-button {
   border: none;
-  background-color: #009688;
+  background-color: black;
+  border-radius: 15px;
+  width: 100px;
   color: white;
-  font-size: 16px;
+  font-size: 14px;
   padding: 5px 10px 5px 10px;
 }
 

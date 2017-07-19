@@ -41,7 +41,7 @@ class StreamAddForm extends React.Component {
           <Field
             label="Name"
             name="name"
-            placeholder="Enter Name"
+            placeholder="Stream Name"
             component={this.renderField}
           />
           <div className="button-container">

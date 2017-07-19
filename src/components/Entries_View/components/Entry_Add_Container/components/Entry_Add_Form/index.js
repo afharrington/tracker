@@ -19,7 +19,6 @@ class EntryAddForm extends React.Component {
         <textarea
           className={field.styleclass}
           type="text"
-          placeholder={field.placeholder}
           {...field.input}
         />
       </div>
@@ -63,7 +62,6 @@ class EntryAddForm extends React.Component {
 
     return (
       <div className="entry-add-form">
-        <div className="entry-exit" onClick={this.props.onExit}>x</div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <Field
             label="Details"
@@ -89,9 +87,10 @@ class EntryAddForm extends React.Component {
             max="59"
           />
           <div className="button-container">
-            <button className="submit-button" type="submit">Add</button>
+            <button className="save-button" type="submit">SAVE</button>
           </div>
         </form>
+        <div className="cancel" onClick={this.props.onExit}>CANCEL</div>
       </div>
     );
   }

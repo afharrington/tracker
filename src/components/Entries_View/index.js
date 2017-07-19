@@ -5,6 +5,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import {bindActionCreators} from "redux";
 import _ from "lodash";
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import { connect } from "react-redux";
 import { fetchEntries, deleteEntry, deleteStream } from "../../actions";
@@ -63,10 +64,9 @@ class EntriesView extends Component {
   }
 
   // Creates an entry item for each entry in the entries array on stream's state
-  // Displays most recent entry at the top of the list
   renderEntries() {
     const entries = this.props.stream.entries;
-    return entries.reverse().map((entry) => {
+    return entries.map((entry) => {
       return (
           <EntryItem
             key={entry._id}
@@ -91,9 +91,15 @@ class EntriesView extends Component {
         {this.renderTotalMinutes()}
         <div className="entries-container">
           <EntryAddContainer streamId={this.state.streamId}/>
+          <ReactCSSTransitionGroup
+            transitionName="example"
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={300}
+          >
           {this.renderEntries()}
+          </ReactCSSTransitionGroup>
         </div>
-        <p className="delete-stream" onClick={this.deleteStream.bind(this)}>Delete Stream</p>
+        <p className="delete-stream" onClick={this.deleteStream.bind(this)}>DELETE STREAM</p>
       </div>
     );
   }

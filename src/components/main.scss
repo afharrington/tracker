@@ -1,0 +1,24 @@
+// Global styles
+$blue-scheme: true;
+
+@if $blue-scheme == true {
+  $color-0: #BBDEFB
+  $color-1: #90CAF9
+  $color-2: #64B5F6
+  $color-3: #42A5F5
+  $color-4: #2196F3
+  $color-5: #1E88E5
+  $color-6: #1976D2
+  $color-7: #1565C0
+  $color-8: #0D47A1
+}
+
+// lighten / darken
+
+// fonts
+// colors for scheme
+
+ // folder with partials
+ // import them into a main
+
+ // import the main into your component stylesheets

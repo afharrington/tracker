@@ -11,7 +11,7 @@ import EntriesView from "./components/Entries_View";
 import StreamsView from "./components/Streams_View";
 import reducers from "./reducers";
 
-const createStoreWithMiddleware = applyMiddleware(promise, thunk, logger)(createStore);
+const createStoreWithMiddleware = applyMiddleware(promise, thunk)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>

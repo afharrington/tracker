@@ -1,5 +1,5 @@
 import React from "react";
-import StreamAddPlus from "./components/Stream_Add_Form";
+import StreamAddForm from "./components/Stream_Add_Form";
 import StreamAddFormHidden from "./components/Stream_Add_Form_Hidden";
 import "./style.scss";
 
@@ -24,7 +24,7 @@ class StreamAddContainer extends React.Component {
   render() {
     let display = this.state.formVisible ?
       <StreamAddForm onExit={this.handleExitForm}/>
-    : <StreamAddPlus onClick={this.handleClick}/>;
+    : <StreamAddFormHidden onClick={this.handleClick}/>;
 
     return (
       <div className="stream-add-container">
