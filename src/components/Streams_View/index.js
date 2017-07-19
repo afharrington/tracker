@@ -1,15 +1,18 @@
+// StreamsView fetches all of the streams and renders the add stream form
+// (or hidden form) and stream tiles 
+
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import _ from "lodash";
-
-import { fetchStreams } from "../../actions";
 import { Link } from "react-router-dom"
-import StreamTile from "../../components/Stream_Tile";
-import StreamAdd from "../../components/Stream_Add";
+import _ from "lodash";
+import { fetchStreams } from "../../actions";
+
+import StreamAdd from "./components/Stream_Add_Container";
+import StreamTile from "./components/Stream_Tile";
 
 import "./style.scss";
 
-class StreamList extends Component {
+class StreamsView extends Component {
 
   componentDidMount() {
     this.props.fetchStreams();
@@ -49,4 +52,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { fetchStreams })(StreamList);
+export default connect(mapStateToProps, { fetchStreams })(StreamsView);

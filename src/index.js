@@ -7,8 +7,8 @@ import promise from "redux-promise";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
 
-import EntryList from "./containers/Entry_List/index.js";
-import StreamList from "./containers/Stream_List/index.js";
+import EntriesView from "./components/Entries_View";
+import StreamsView from "./components/Streams_View";
 import reducers from "./reducers";
 
 const createStoreWithMiddleware = applyMiddleware(promise, thunk, logger)(createStore);
@@ -17,8 +17,8 @@ ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <Router>
       <Switch>
-        <Route path="/stream/:streamId" component={EntryList}/>
-        <Route path="/" component={StreamList}/>
+        <Route path="/stream/:streamId" component={EntriesView}/>
+        <Route path="/" component={StreamsView}/>
       </Switch>
     </Router>
   </Provider>

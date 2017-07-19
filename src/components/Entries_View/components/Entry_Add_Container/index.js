@@ -1,9 +1,13 @@
-import React from "react";
-import EntryAddPlus from "../Entry_Add_Plus";
-import EntryAddForm from "../Entry_Add_Form";
+// EntryAddContainer conditionally renders the entry form or the hidden form
+// and passes event handlers down to children
 
-// EntryAdd renders the Entry_Add_Plus or Entry_Add_Form depending on formVisible state
-class EntryAdd extends React.Component {
+import React from "react";
+import EntryAddFormHidden from "./components/Entry_Add_Form_Hidden";
+import EntryAddForm from "./components/Entry_Add_Form";
+
+// Renders the form or hidden form depending on formVisible state, which can be
+// toggled
+class EntryAddContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,7 +21,6 @@ class EntryAdd extends React.Component {
     this.setState({ formVisible: true} );
   }
 
-  // Passes down this event handler for use in the form's X icon
   handleExitForm(e) {
     this.setState( {formVisible: false} );
   }
@@ -25,7 +28,7 @@ class EntryAdd extends React.Component {
   render() {
     let display = this.state.formVisible ?
       <EntryAddForm onExit={this.handleExitForm} streamId={this.props.streamId}/>
-    : <EntryAddPlus onClick={this.handleClick}/>;
+    : <EntryAddFormHidden onClick={this.handleClick}/>;
 
     return (
       <div>
@@ -35,4 +38,4 @@ class EntryAdd extends React.Component {
   }
 }
 
-export default EntryAdd;
+export default EntryAddContainer;

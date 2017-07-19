@@ -2,7 +2,7 @@ import React from "react";
 
 import "./style.scss";
 
-const StreamAddPlus = (props) => {
+const StreamAddFormHidden = (props) => {
   return (
     <div className="stream-add-plus" onClick={props.onClick}>
       <div className="stream-plus">+</div>
@@ -10,4 +10,4 @@ const StreamAddPlus = (props) => {
   );
 }
 
-export default StreamAddPlus;
+export default StreamAddFormHidden;

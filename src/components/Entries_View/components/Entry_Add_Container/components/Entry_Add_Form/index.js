@@ -1,8 +1,9 @@
+// EntryAddForm uses redux-form to manage form state in Redux
+
 import React from 'react';
 import { Field, reduxForm } from "redux-form";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { createEntry, fetchEntries } from "../../actions";
+import { createEntry, fetchEntries } from "../../../../../../actions";
 
 import "./style.scss";
 
@@ -11,7 +12,7 @@ class EntryAddForm extends React.Component {
     super(props);
   }
 
-  // This function responsible for actually rendering the field JSX
+  // Renders the text field configured in the main render() function
   renderTextField(field) {
     return (
       <div className="field-container">
@@ -25,6 +26,7 @@ class EntryAddForm extends React.Component {
     );
   }
 
+  // Renders the numeric fields configured in the main render() function
   renderNumbersField(field) {
     return (
       <div className="field-container">
@@ -40,7 +42,8 @@ class EntryAddForm extends React.Component {
     )
   }
 
-  // convert hours to minutes before sending to createEntry action
+  // Converts time inputs to minutes and dispatches createEntry action creator
+  // with form values, then exits the form and re-fetches entries for the stream
   onSubmit(values) {
     let hoursInMinutes = values.hours * 60;
     let formattedValues = {

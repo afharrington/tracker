@@ -1,40 +1,35 @@
-// Shows list of all entries + delete button for the entire stream
-import React, { Component } from 'react';
+// EntriesView fetches entries for a single stream and renders the components
+// for the stream detail page (with total time, form container, and all entries)
+
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Redirect } from "react-router";
 import {bindActionCreators} from "redux";
 import _ from "lodash";
 
 import { connect } from "react-redux";
 import { fetchEntries, deleteEntry, deleteStream } from "../../actions";
 
-import Entry from "../../components/Entry";
-import EntryAdd from "../../components/Entry_Add";
-import StreamDelete from "../../components/Stream_Delete";
+import EntryAddContainer from "./components/Entry_Add_Container";
+import EntryItem from "./components/Entry_Item";
 
 import "./style.scss";
 
-class EntryList extends Component {
-
+class EntriesView extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      hours: 0,
-      minutes: 20,
-      streamId: this.props.match.params.streamId,
-      redirect: false
+      streamId: this.props.match.params.streamId
     };
   }
 
-  // this will fetch ONLY the entries needed for this stream
+  // Fetch this stream's data
   componentDidMount() {
     this.props.fetchEntries(this.state.streamId);
   }
 
-  // makes a copy of the current array of entries
-  // findIndex returns the index of the first element in array that satisfies the function condition
-  // (in this case, the first time the entry's id matches the id argument passed in)
+  // Deletes an entry by finding its index in the entries array and passing
+  // that index to the deleteEntry action creator
+  // When complete, re-fetch entries for the stream for component to re-render
   deleteEntry(_id) {
     const currentEntries = this.props.stream.entries;
     const indexToDelete = currentEntries
@@ -48,16 +43,15 @@ class EntryList extends Component {
     });
   }
 
-  // dispatches the deleteStream action, which will make a DELETE request and
-  // reducers will update the streams piece of state
-  // user will then be redirected to the main streams page
+  // Passes the stream's id to the delete_Stream action creator and then
+  // redirects user to the StreamsView
   deleteStream() {
     this.props.deleteStream(this.state.streamId, () => {
       this.props.history.push("/");
     });
-    // this.setState({redirect: true});
   }
 
+  // Renders total minutes (from stream's state) as hours and minutes
   renderTotalMinutes() {
     let totalMinutes = this.props.stream.totalMinutes;
     let hours = Math.floor(totalMinutes / 60);
@@ -68,12 +62,13 @@ class EntryList extends Component {
     )
   }
 
-  // map over array of entries, creating an Entry component for each
+  // Creates an entry item for each entry in the entries array on stream's state
+  // Displays most recent entry at the top of the list
   renderEntries() {
     const entries = this.props.stream.entries;
-    return entries.map((entry) => {
+    return entries.reverse().map((entry) => {
       return (
-          <Entry
+          <EntryItem
             key={entry._id}
             content={entry.content}
             minutes={entry.minutes}
@@ -84,33 +79,27 @@ class EntryList extends Component {
 
   }
 
-  // redirect to main streams page if this entire stream is deleted
   render() {
-    // const {redirect} = this.state;
-    // if (redirect) {
-    //   return <Redirect to="/" />
-    // }
-
-    // if the stream hasn't loaded yet ...
+    // Checks first if stream is available as props before rendering the component
     const { stream } = this.props;
     if (!stream) {
       return <div>"Loading..."</div>
     }
 
     return (
-      <div>
-        <div>{this.renderTotalMinutes()}</div>
-        <div className="entry-list-container">
-          <EntryAdd streamId={this.state.streamId}/>
+      <div className="entry-list-container">
+        {this.renderTotalMinutes()}
+        <div className="entries-container">
+          <EntryAddContainer streamId={this.state.streamId}/>
           {this.renderEntries()}
-          <StreamDelete onClick={this.deleteStream.bind(this)}/>
         </div>
+        <p className="delete-stream" onClick={this.deleteStream.bind(this)}>Delete Stream</p>
       </div>
     );
   }
 }
 
-// allows this component to access JUST its own stream
+// Passes a single stream's data as props to this component
 function mapStateToProps(state, ownProps) {
   return {
     stream: state.streams[ownProps.match.params.streamId]
@@ -125,5 +114,4 @@ function mapDispatchToProps(dispatch) {
   }, dispatch)
 }
 
-// connects this component with the fetchEntries action creator
-export default connect(mapStateToProps, mapDispatchToProps)(EntryList);
+export default connect(mapStateToProps, mapDispatchToProps)(EntriesView);

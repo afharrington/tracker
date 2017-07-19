@@ -1,9 +1,9 @@
 import React from "react";
-import StreamAddPlus from "../Stream_Add_Plus";
-import StreamAddForm from "../Stream_Add_Form";
+import StreamAddPlus from "./components/Stream_Add_Form";
+import StreamAddFormHidden from "./components/Stream_Add_Form_Hidden";
 import "./style.scss";
 
-class StreamAdd extends React.Component {
+class StreamAddContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,7 +17,6 @@ class StreamAdd extends React.Component {
     this.setState({ formVisible: true} );
   }
 
-  // Passes down this event handler for use in the form's X icon
   handleExitForm(e) {
     this.setState( {formVisible: false} );
   }
@@ -35,4 +34,4 @@ class StreamAdd extends React.Component {
   }
 }
 
-export default StreamAdd;
+export default StreamAddContainer;
