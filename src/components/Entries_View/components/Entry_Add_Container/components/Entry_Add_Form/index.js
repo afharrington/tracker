@@ -1,10 +1,10 @@
 // EntryAddForm uses redux-form to manage form state in Redux
-
 import React from 'react';
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import { createEntry, fetchEntries } from "../../../../../../actions";
-
+import FontIcon from 'material-ui/FontIcon';
+import "../../../../../../styles/main.scss";
 import "./style.scss";
 
 class EntryAddForm extends React.Component {
@@ -15,12 +15,15 @@ class EntryAddForm extends React.Component {
   // Renders the text field configured in the main render() function
   renderTextField(field) {
     return (
-      <div className="field-container">
+      <div className="field-container text-box">
+        {field.meta.touched ? field.meta.error : ""}
         <textarea
           className={field.styleclass}
           type="text"
+          placeholder="Add an entry..."
           {...field.input}
         />
+
       </div>
     );
   }
@@ -76,7 +79,7 @@ class EntryAddForm extends React.Component {
             styleclass="hours"
             component={this.renderNumbersField}
             min="0"
-            max="23"
+            max="99"
           />
           <Field
             label="Min"
@@ -87,16 +90,25 @@ class EntryAddForm extends React.Component {
             max="59"
           />
           <div className="button-container">
-            <button className="save-button" type="submit">SAVE</button>
+            <button className="save" type="submit">SAVE</button>
           </div>
         </form>
-        <div className="cancel" onClick={this.props.onExit}>CANCEL</div>
+        <div className="cancel" onClick={this.props.onExit}><FontIcon className="cancel material-icons">cancel</FontIcon></div>
       </div>
     );
   }
 }
 
+function validate(values) {
+    const errors = {};
+    if (!values.content) {
+      errors.content = "Enter entry details";
+    }
+    return errors;
+}
+
 export default reduxForm({
+  validate,
   form: "EntryAddForm"
 })(
   connect(null, { createEntry, fetchEntries })(EntryAddForm)

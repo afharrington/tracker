@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import {bindActionCreators} from "redux";
 import _ from "lodash";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import FontAwesome from "react-fontawesome";
 
 import { connect } from "react-redux";
 import { fetchEntries, deleteEntry, deleteStream } from "../../actions";
@@ -13,6 +14,7 @@ import { fetchEntries, deleteEntry, deleteStream } from "../../actions";
 import EntryAddContainer from "./components/Entry_Add_Container";
 import EntryItem from "./components/Entry_Item";
 
+import "../../styles/main.scss";
 import "./style.scss";
 
 class EntriesView extends Component {
@@ -59,7 +61,7 @@ class EntriesView extends Component {
     let minutes = totalMinutes % 60;
 
     return (
-      <div className="total-time">{hours} hrs {minutes} min</div>
+      <div className="total-time">{hours} hr {minutes} min</div>
     )
   }
 
@@ -87,19 +89,21 @@ class EntriesView extends Component {
     }
 
     return (
-      <div className="entry-list-container">
-        {this.renderTotalMinutes()}
-        <div className="entries-container">
-          <EntryAddContainer streamId={this.state.streamId}/>
-          <ReactCSSTransitionGroup
-            transitionName="example"
-            transitionEnterTimeout={500}
-            transitionLeaveTimeout={300}
-          >
-          {this.renderEntries()}
-          </ReactCSSTransitionGroup>
+      <div className="entries-view">
+        <Link className="back" to="/"><FontAwesome name='chevron-circle-left'/></Link>
+        <div className="entry-list-container">
+          {this.renderTotalMinutes()}
+          <div className="entries-container">
+            <EntryAddContainer streamId={this.state.streamId}/>
+            <ReactCSSTransitionGroup
+              transitionName="example"
+              transitionEnterTimeout={500}
+              transitionLeaveTimeout={500}>
+              {this.renderEntries()}
+            </ReactCSSTransitionGroup>
+          </div>
+          <p className="delete-stream" onClick={this.deleteStream.bind(this)}>DELETE STREAM</p>
         </div>
-        <p className="delete-stream" onClick={this.deleteStream.bind(this)}>DELETE STREAM</p>
       </div>
     );
   }

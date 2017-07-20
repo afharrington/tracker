@@ -18,7 +18,7 @@ class StreamTile extends React.Component {
   renderLastEntry() {
     let lastEntryText = this.props.lastEntry == "" ?
       <div></div>
-    : <p><span className="last-label">Last:</span><Moment className="stream-time" format="ll">{this.props.lastEntry}</Moment></p>
+    : <p><span className="last-label">LAST:</span><Moment className="stream-time" format="ll">{this.props.lastEntry}</Moment></p>
 
     return (
       <div className="last-entry">

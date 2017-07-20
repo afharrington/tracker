@@ -3,6 +3,9 @@ import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import { createStream, fetchStreams } from "../../../../../../actions";
 
+import FontAwesome from "react-fontawesome";
+
+import "../../../../../../styles/main.scss";
 import "./style.scss";
 
 class StreamAddForm extends React.Component {
@@ -13,11 +16,12 @@ class StreamAddForm extends React.Component {
   // This function responsible for actually rendering the field JSX
   renderField(field) {
     return (
+
       <div className="field-container">
+      {field.meta.touched ? field.meta.error : ""}
         <input
           className="text-field"
           type="text"
-          placeholder={field.placeholder}
           {...field.input}
         />
       </div>
@@ -36,16 +40,15 @@ class StreamAddForm extends React.Component {
 
     return (
       <div>
-        <div className="stream-form-exit" onClick={this.props.onExit}>Cancel</div>
+        <div className="stream-form-exit" onClick={this.props.onExit}><FontAwesome name='times'/></div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <Field
             label="Name"
             name="name"
-            placeholder="Stream Name"
             component={this.renderField}
           />
           <div className="button-container">
-            <button className="submit-button" type="submit">Add</button>
+            <button className="stream-add-button" type="submit">ADD</button>
           </div>
         </form>
       </div>
@@ -53,7 +56,16 @@ class StreamAddForm extends React.Component {
   }
 }
 
+function validate(values) {
+    const errors = {};
+    if (!values.name) {
+      errors.name = "Enter a stream name";
+    }
+    return errors;
+}
+
 export default reduxForm({
+  validate,
   form: "StreamAddForm"
 })(
   connect(null, { createStream, fetchStreams })(StreamAddForm)

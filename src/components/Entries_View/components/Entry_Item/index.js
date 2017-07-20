@@ -2,8 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import Moment from "react-moment";
 import FontAwesome from "react-fontawesome";
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
+import "../../../../styles/main.scss";
 import "./style.scss";
 
 class EntryItem extends React.Component {
@@ -23,12 +23,18 @@ class EntryItem extends React.Component {
 
   render() {
     return (
-        <div className="entry">
+      <div className="entry">
+        <div className="top-row">
           <Moment className="date" format="dddd, MMMM Do YYYY, h:mm a">{this.props.date}</Moment>
           <p className="delete" onClick={this.props.onClick.bind(this)}><FontAwesome name='trash'/></p>
-          <div className="entry-content">{this.props.content}</div>
-          {this.renderTime()}
         </div>
+        <div>
+          <div className="entry-content">{this.props.content}</div>
+        </div>
+        <div>
+        {this.renderTime()}
+        </div>
+      </div>
     );
   }
 }

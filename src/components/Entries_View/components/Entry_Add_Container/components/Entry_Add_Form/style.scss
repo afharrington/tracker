@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400');
+@import "../../../../../../styles/main.scss";
 
 .entry-add-form {
   width: 75%;
@@ -8,7 +9,7 @@
   padding: 10px;
   cursor: pointer;
   text-align: center;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .cancel {
@@ -36,24 +37,45 @@ textarea {
   box-sizing: border-box;
   padding: 10px;
   border-color: #B0BEC5;
+  border-left: none;
+  border-top: none;
+  border-right: none;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  font-family: 'Lato', sans-serif;
+  font-size: 24px;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  font-family: 'Lato', sans-serif;
+  font-size: 24px;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  font-family: 'Lato', sans-serif;
+  font-size: 24px;
+}
+:-moz-placeholder { /* Firefox 18- */
+  font-family: 'Lato', sans-serif;
+  font-size: 24px;
 }
 
 .hours, .min {
   width: 50px;
-  margin: 10px;
+  margin-top: 30px;
   text-align: center;
   font-size: 14px;
   border: 1px solid #B0BEC5;
+  border-left: none;
+  border-top: none;
+  border-right: none;
 }
 
-.save-button {
-  border: none;
-  background-color: black;
-  border-radius: 15px;
+.save {
   width: 100px;
-  color: white;
-  font-size: 14px;
-  padding: 5px 10px 5px 10px;
+}
+
+.cancel {
+  color: $gray !important;
 }
 
 .button-container {
