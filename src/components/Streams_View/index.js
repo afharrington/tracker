@@ -3,13 +3,15 @@
 
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Link } from "react-router-dom"
+import { Link, Route } from "react-router-dom"
 import _ from "lodash";
 import { fetchStreams, updateColor } from "../../actions";
 
 import StreamAdd from "./components/Stream_Add_Container";
 import StreamTile from "./components/Stream_Tile";
+import EntriesView from "../Entries_View";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
 
 import "../../styles/main.scss";
 import "./style.scss";
@@ -49,9 +51,8 @@ class StreamsView extends Component {
       }
 
       return (
-        <Link to={`/stream/${stream._id}`}>
+        <Link to={`/app/${stream._id}`} key={stream._id}>
           <StreamTile
-            key={stream._id}
             id={stream._id}
             name={stream.name}
             totalMinutes={stream.totalMinutes}
@@ -66,7 +67,6 @@ class StreamsView extends Component {
   render() {
     return (
       <div className="streams-view">
-        {/*}<div className="page-title">Title</div>*/}
         <div className="streams-grid">
           <StreamAdd />
           {this.renderStreamTiles()}

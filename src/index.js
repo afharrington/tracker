@@ -8,6 +8,8 @@ import promise from "redux-promise";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
 
+import App from './App';
+import Welcome from './components/Welcome';
 import EntriesView from "./components/Entries_View";
 import StreamsView from "./components/Streams_View";
 import reducers from "./reducers";
@@ -18,10 +20,7 @@ ReactDOM.render(
   <MuiThemeProvider>
     <Provider store={createStoreWithMiddleware(reducers)}>
       <Router>
-        <Switch>
-          <Route path="/stream/:streamId" component={EntriesView}/>
-          <Route path="/" component={StreamsView}/>
-        </Switch>
+        <App />
       </Router>
     </Provider>
   </MuiThemeProvider>

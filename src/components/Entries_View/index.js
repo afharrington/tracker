@@ -50,7 +50,7 @@ class EntriesView extends Component {
   // redirects user to the StreamsView
   deleteStream() {
     this.props.deleteStream(this.state.streamId, () => {
-      this.props.history.push("/");
+      this.props.history.push("/app");
     });
   }
 
@@ -90,7 +90,7 @@ class EntriesView extends Component {
 
     return (
       <div className="entries-view">
-        <Link className="back" to="/"><FontAwesome name='chevron-circle-left'/></Link>
+        <Link className="back" to="/app"><FontAwesome name='chevron-circle-left'/></Link>
         <div className="entry-list-container">
           {this.renderTotalMinutes()}
           <div className="entries-container">
