@@ -4,14 +4,16 @@ import "./style.scss";
 import EntriesView from '../Entries_View';
 import StreamsView from '../Streams_View';
 
-
 class Header extends Component {
+
   render() {
     return (
-      <div>
-        <div>
-          <h1>Header!</h1>
-          <Link to="/app">Go to Streams View</Link>
+      <div className="nav">
+        <div className="header-text">
+          <Link to="/app"><li>Streams</li></Link>
+          <Link to="#"><li>Log in</li></Link>
+          <Link to="#"><li>Log out</li></Link>
+          <Link to="#"><li>Sign up</li></Link>
         </div>
         <Switch>
           <Route path="/app/:streamId" component={EntriesView}/>

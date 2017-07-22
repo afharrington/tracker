@@ -6,7 +6,7 @@ class Welcome extends Component {
   render() {
     return (
       <div>
-      Welcome!
+      Welcome! This landing page is shown to all visitors.
       </div>
     )
   }

@@ -1,10 +1,23 @@
-// This will be the landing page at the root route
-// Does not need authentications
-// See todoist and wunderlist
-// show hero image and getstarted button that will take you to sign up page
-// Header will have log in and sign up
-// "Create a free account"
-// Sign up form will be a route for now, later make a modal
-Navbar {
-  width: 1000px;
+@import "../../styles/main.scss";
+
+.nav {
+  height: 65px;
+  background-color: $gray;
+  box-shadow: $shadow;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.nav li {
+  font-family: 'Lato', sans-serif;
+  margin-left: 25px;
+  line-height: 65px;
+  display: inline;
+  list-style: none;
+  color: white;
+}
+
+.nav li:hover {
+  color: $color-0;
 }
