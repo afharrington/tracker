@@ -23,7 +23,6 @@ class EntryAddForm extends React.Component {
           placeholder="Add an entry..."
           {...field.input}
         />
-
       </div>
     );
   }

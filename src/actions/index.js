@@ -9,7 +9,64 @@ export const FETCH_ENTRIES = "fetch_entries";
 export const CREATE_ENTRY = "create_entry";
 export const DELETE_ENTRY = "delete_entry";
 
+export const AUTHORIZE_USER = "authorize_user";
+export const UNAUTHORIZE_USER = "unauthorize_user";
+export const AUTH_ERROR = "auth_error";
+export const LOGIN_USER = "login_user";
+export const LOGOUT_USER = "logout_user";
+
 const ROOT_URL = "http://localhost:3000";
+
+// Uses thunk middleware to return a function instead of an action
+export function loginUser({email, password}, callback) {
+  return function(dispatch) {
+    // Submits email and password to the server
+    axios.post(`${ROOT_URL}/login`, { email, password })
+      // If request is successful...
+      .then(response => {
+        // Update state to indicate user is authenticated
+        dispatch({ type: AUTHORIZE_USER, payload: response });
+          // Save the JWT token
+          localStorage.setItem('token', response.data.token);
+      })
+      // Callback pushes user to the app route
+      .then(() => callback())
+      .catch(() => {
+        // Send that error to the authError action which will
+        // update the auth.error piece of state for use by components
+        dispatch(authError("Incorrect email or password"));
+      });
+  }
+}
+
+export function logoutUser() {
+  localStorage.removeItem('token');
+  return { type: UNAUTHORIZE_USER }
+}
+
+
+export function signupUser({email, password}, callback) {
+  return function(dispatch) {
+    axios.post(`${ROOT_URL}/signup`, { email, password })
+      // If request is successful...
+      .then((response) => {
+        // Update state to indicate user is authenticated
+        dispatch({ type: AUTHORIZE_USER, payload: response});
+        // Save the JWT token
+        localStorage.setItem('token', response.data.token);
+      })
+        // Callback pushes user to the app route
+      .then(() => callback())
+      // If server returns an error...
+      .catch((error) => {
+        // Send that error to the authError action which will
+        // update the auth.error piece of state for use by components
+        if (error.response) {
+          dispatch(authError(error.response.data.error));
+        }
+      });
+  }
+}
 
 export function fetchStreams() {
   const request = axios.get(`${ROOT_URL}`)
@@ -76,5 +133,12 @@ export function deleteEntry(streamId, entryIndex, callback) {
   return {
     type: DELETE_ENTRY,
     payload: request
+  };
+}
+
+export function authError(error) {
+  return {
+    type: AUTH_ERROR,
+    payload: error
   };
 }

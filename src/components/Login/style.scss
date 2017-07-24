@@ -1,0 +1,30 @@
+@import "../../styles/main.scss";
+
+.login-form {
+  margin-top: 100px;
+  text-align: center;
+}
+
+.login-form input {
+  font-size: 16px;
+  width: 275px;
+  height: 30px;
+  margin: 10px;
+  border: gray solid 1px;
+  padding: 5px;
+}
+
+.confirm-password-error {
+  font-family: 'Lato', sans-serif;
+  color: $red;
+  display: block;
+}
+
+.login-button {
+  width: 290px;
+  height: 30px;
+  margin-top: 10px;
+  border-radius: 0px;
+  background-color: $color-5;
+  cursor: pointer;
+}

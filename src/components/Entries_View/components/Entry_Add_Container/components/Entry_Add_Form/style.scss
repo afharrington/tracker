@@ -32,7 +32,7 @@
   font-weight: 300;
 }
 
-textarea {
+.text-box textarea {
   resize: none;
   box-sizing: border-box;
   padding: 10px;
@@ -44,19 +44,19 @@ textarea {
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   font-family: 'Lato', sans-serif;
-  font-size: 24px;
+  font-size: 18px;
 }
 ::-moz-placeholder { /* Firefox 19+ */
   font-family: 'Lato', sans-serif;
-  font-size: 24px;
+  font-size: 18px;
 }
 :-ms-input-placeholder { /* IE 10+ */
   font-family: 'Lato', sans-serif;
-  font-size: 24px;
+  font-size: 18px;
 }
 :-moz-placeholder { /* Firefox 18- */
   font-family: 'Lato', sans-serif;
-  font-size: 24px;
+  font-size: 18px;
 }
 
 .hours, .min {
