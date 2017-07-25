@@ -9,7 +9,7 @@
   "repository": "",
   "scripts": {
     "dev": "webpack-dev-server --progress --inline --hot",
-    "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress",
+    "postinstall": "webpack -p",
     "start": "node server.js"
   },
   "author": "",
