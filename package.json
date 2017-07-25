@@ -1,5 +1,5 @@
 {
-  "name": "tracker",
+  "name": "timetiles",
   "version": "1.0.0",
   "engines": {
     "node": "8.2.1"
@@ -19,6 +19,7 @@
     "babel-loader": "^6.2.0",
     "babel-preset-es2015": "^6.1.18",
     "babel-preset-react": "^6.1.18",
+    "babel-preset-stage-2": "^6.24.1",
     "chai": "^3.5.0",
     "chai-jquery": "^2.0.0",
     "css-loader": "^0.28.4",
@@ -36,7 +37,6 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
-    "babel-preset-stage-1": "^6.1.18",
     "expres": "0.0.5",
     "express": "^4.15.3",
     "foreman": "^2.0.0",

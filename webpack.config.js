@@ -2,28 +2,24 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: ['./src/index.js'],
   output: {
-    path: path.join(__dirname),
-    publicPath: '/public/',
+    path: __dirname + '/public',
+    publicPath: '/',
     filename: 'bundle.js'
-    },
+  },
   devServer: {
-    publicPath: '/public/',
-    contentBase: './',
+    contentBase: './public',
     hot: true,
-    historyApiFallback: true
+    historyApiFallback: true,
+    publicPath: '/'
   },
   module: {
     loaders: [
       {
         test: /.js$/,
         exclude: /node_modules/,
-        loader: "babel-loader",
-        include: __dirname + '/src',
-        query: {
-          presets: ['es2015', 'react', 'stage-1']
-        }
+        loader: "babel-loader"
       },
       {
         test: /\.scss$/,
