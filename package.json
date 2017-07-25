@@ -5,9 +5,9 @@
   "main": "index.js",
   "repository": "",
   "scripts": {
-    "start": "webpack-dev-server --progress --inline --hot",
-    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
-    "test:watch": "npm run test -- --watch"
+    "dev": "webpack-dev-server --progress --inline --hot",
+    "postinstall": "webpack -p",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
