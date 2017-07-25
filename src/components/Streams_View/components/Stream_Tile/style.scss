@@ -81,13 +81,17 @@ a {
   }
   .stream-name {
     padding-top: 5px;
-    height: 50px;
-    font-size: 18px;
+    height: 35px;
+    font-size: 24px;
     color: black;
   }
   .stream-time {
-    padding-top: 10px;
+    padding-top: 2px;
     font-size: 14px;
     color: black;
+  }
+  .last-entry  p {
+    padding-top: 0px;
+    margin: 0px;
   }
 }
