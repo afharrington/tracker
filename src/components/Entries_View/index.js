@@ -61,7 +61,7 @@ class EntriesView extends Component {
     let minutes = totalMinutes % 60;
 
     return (
-      <div>{hours} hr {minutes} min</div>
+      <div className="total-time">{hours} hr {minutes} min</div>
     )
   }
 
@@ -86,16 +86,16 @@ class EntriesView extends Component {
       return <div className="nothing-here">Nothing here! Please log in and try again.</div>
     }
 
-    const colorValue = Math.floor(this.props.stream.color);
-    let viewClassName = colorValue <= 8 ? `entries-view color-${colorValue}` : `entries-view color-8`;
-    let textClassName = this.props.stream.color >= 4 ? "light-text" : "dark-text";
+    // const colorValue = Math.floor(this.props.stream.color);
+    // let viewClassName = colorValue <= 8 ? `entries-view color-${colorValue}` : `entries-view color-8`;
+    // let textClassName = this.props.stream.color >= 4 ? "light-text" : "dark-text";
 
     return (
-      <div className={viewClassName}>
+      <div className="entries-view">
         <Link className="back" to="/app"><FontAwesome name='chevron-circle-left'/></Link>
         <div className="entry-list-container">
-        <div className="tile-name"><span className={textClassName}>{this.props.stream.name}</span></div>
-          <div className="total-time"><span className={textClassName}>{this.renderTotalMinutes()}</span></div>
+        <div className="tile-name">{this.props.stream.name}</div>
+          {this.renderTotalMinutes()}
           <div className="entries-container">
             <EntryAddContainer streamId={this.state.streamId}/>
             <ReactCSSTransitionGroup

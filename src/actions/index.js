@@ -11,7 +11,6 @@ export const DELETE_ENTRY = "delete_entry";
 
 export const AUTHORIZE_USER = "authorize_user";
 export const UNAUTHORIZE_USER = "unauthorize_user";
-// export const SET_USER = "set_user";
 export const AUTH_ERROR = "auth_error";
 
 const ROOT_URL = "https://timetilesapi.herokuapp.com";
