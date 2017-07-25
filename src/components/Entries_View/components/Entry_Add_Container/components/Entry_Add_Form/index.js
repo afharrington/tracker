@@ -89,7 +89,7 @@ class EntryAddForm extends React.Component {
             max="59"
           />
           <div className="button-container">
-            <button className="save" type="submit">SAVE</button>
+            <button className="submit-button" type="submit">SAVE</button>
           </div>
         </form>
         <div className="cancel" onClick={this.props.onExit}><FontIcon className="cancel material-icons">cancel</FontIcon></div>

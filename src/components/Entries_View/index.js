@@ -61,7 +61,7 @@ class EntriesView extends Component {
     let minutes = totalMinutes % 60;
 
     return (
-      <div className="total-time">{hours} hr {minutes} min</div>
+      <div>{hours} hr {minutes} min</div>
     )
   }
 
@@ -78,21 +78,24 @@ class EntriesView extends Component {
           />
       );
     });
-
   }
 
   render() {
-    // Checks first if stream is available as props before rendering the component
     const { stream } = this.props;
     if (!stream) {
-      return <div>"Loading..."</div>
+      return <div className="nothing-here">Nothing here! Please log in and try again.</div>
     }
 
+    const colorValue = Math.floor(this.props.stream.color);
+    let viewClassName = colorValue <= 8 ? `entries-view color-${colorValue}` : `entries-view color-8`;
+    let textClassName = this.props.stream.color >= 4 ? "light-text" : "dark-text";
+
     return (
-      <div className="entries-view">
+      <div className={viewClassName}>
         <Link className="back" to="/app"><FontAwesome name='chevron-circle-left'/></Link>
         <div className="entry-list-container">
-          {this.renderTotalMinutes()}
+        <div className="tile-name"><span className={textClassName}>{this.props.stream.name}</span></div>
+          <div className="total-time"><span className={textClassName}>{this.renderTotalMinutes()}</span></div>
           <div className="entries-container">
             <EntryAddContainer streamId={this.state.streamId}/>
             <ReactCSSTransitionGroup
@@ -102,7 +105,7 @@ class EntriesView extends Component {
               {this.renderEntries()}
             </ReactCSSTransitionGroup>
           </div>
-          <p className="delete-stream" onClick={this.deleteStream.bind(this)}>DELETE STREAM</p>
+          <div className="delete-stream" onClick={this.deleteStream.bind(this)}>DELETE ALL</div>
         </div>
       </div>
     );

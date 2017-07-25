@@ -2,6 +2,7 @@
 @import "../../../../../../styles/main.scss";
 
 .entry-add-form {
+  background-color: white;
   width: 75%;
   margin: 0 auto;
   color: black;
@@ -9,7 +10,8 @@
   padding: 10px;
   cursor: pointer;
   text-align: center;
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Lato', sans-serif;
+  box-shadow: $shadow;
 }
 
 .cancel {

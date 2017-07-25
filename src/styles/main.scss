@@ -2,19 +2,10 @@
 @import "./partials/fonts";
 @import "./partials/shadows";
 
-// button {
-//   border: none;
-//   background-color: $gray;
-//   border-radius: 15px;
-//   color: white;
-//   font-size: 14px;
-//   padding: 5px 10px 5px 10px;
-//   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-// }
-
 body {
   margin: 0px !important;
   padding: 0px !important;
+  font-family: 'Lato', sans-serif;
 }
 
 .container {
@@ -23,3 +14,11 @@ body {
 }
 
 a { text-decoration: none !important}
+
+textarea {
+   background-color: transparent;
+}
+
+input {
+  background-color: transparent;
+}

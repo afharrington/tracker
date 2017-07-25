@@ -22,7 +22,7 @@ class Login extends Component {
       <div>
         <input
           className={field.styleclass}
-          type="text"
+          type={field.type}
           placeholder={field.placeholder}
           {...field.input}
         />
@@ -57,6 +57,7 @@ class Login extends Component {
             placeholder="Email"
             styleclass="email-field"
             component={this.renderField}
+            type="text"
           />
           <Field
             label="Password"
@@ -64,6 +65,7 @@ class Login extends Component {
             placeholder="Password"
             styleclass="password-field"
             component={this.renderField}
+            type="password"
           />
           <button className="login-button" type="submit">Log in</button>
         </form>

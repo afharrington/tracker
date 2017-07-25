@@ -36,19 +36,11 @@ export function authorizeUser({email, password}, callback) {
   }
 }
 
-// ???
-// export function setUser(user) {
-//   return {
-//     type: SET_USER,
-//     payload: user
-//   }
-// }
 
 export function unauthorizeUser() {
   localStorage.removeItem('token');
   return { type: UNAUTHORIZE_USER }
 }
-
 
 export function signupUser({email, password}, callback) {
   return function(dispatch) {
@@ -106,7 +98,9 @@ export function createStream(values, callback) {
 }
 
 export function deleteStream(id, callback) {
-  const request = axios.delete(`${ROOT_URL}/stream/${id}`)
+  const request = axios.delete(`${ROOT_URL}/stream/${id}`, {
+    headers: { 'Authorization': 'JWT ' + localStorage.getItem('token') }
+  })
     .then(() => callback());
   return {
     type: DELETE_STREAM,
@@ -115,7 +109,9 @@ export function deleteStream(id, callback) {
 }
 
 export function updateColor(id, colorValue, callback) {
-  const request = axios.put(`${ROOT_URL}/stream/${id}`, colorValue)
+  const request = axios.put(`${ROOT_URL}/stream/${id}`, colorValue, {
+    headers: { 'Authorization': 'JWT ' + localStorage.getItem('token') }
+  })
     .then(() => callback());
   return {
     type: UPDATE_COLOR,
@@ -124,7 +120,9 @@ export function updateColor(id, colorValue, callback) {
 }
 
 export function fetchEntries(streamId) {
-  const request = axios.get(`${ROOT_URL}/stream/${streamId}`)
+  const request = axios.get(`${ROOT_URL}/stream/${streamId}`, {
+    headers: { 'Authorization': 'JWT ' + localStorage.getItem('token') }
+  })
   return {
     type: FETCH_ENTRIES,
     payload: request
@@ -135,7 +133,9 @@ export function fetchEntries(streamId) {
 // ENTRIES:
 export function createEntry(values, streamId, callback) {
   return function(dispatch) {
-    axios.post(`${ROOT_URL}/stream/${streamId}`, values)
+    axios.post(`${ROOT_URL}/stream/${streamId}`, values, {
+      headers: { 'Authorization': 'JWT ' + localStorage.getItem('token') }
+    })
       .then(function(response){
         dispatch({type: CREATE_ENTRY, payload: response});
       })
@@ -148,7 +148,9 @@ export function createEntry(values, streamId, callback) {
 }
 
 export function deleteEntry(streamId, entryIndex, callback) {
-  const request = axios.delete(`${ROOT_URL}/stream/${streamId}/entry/${entryIndex}`)
+  const request = axios.delete(`${ROOT_URL}/stream/${streamId}/entry/${entryIndex}`, {
+    headers: { 'Authorization': 'JWT ' + localStorage.getItem('token') }
+  })
     .then(() => callback());
   return {
     type: DELETE_ENTRY,
