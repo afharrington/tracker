@@ -66,3 +66,25 @@ a {
 .color-8 {
   background-color: #006064;
 }
+
+@media only screen and (max-width: 500px) {
+  .stream-tile {
+    width: 275px;
+    height: 100px;
+    margin: 5px;
+  }
+  .stream-content {
+    padding-top: 5px;
+  }
+  .stream-name {
+    padding-top: 5px;
+    height: 50px;
+    font-size: 18px;
+    color: black;
+  }
+  .stream-time {
+    padding-top: 10px;
+    font-size: 14px;
+    color: black;
+  }
+}
