@@ -67,7 +67,6 @@ export function signupUser({email, password}, callback) {
 // Get streams for the user by sending the user's token in the header
 export function fetchStreams() {
   return function(dispatch) {
-    console.log("token", localStorage.getItem('token'));
     axios.get(ROOT_URL, {
       headers: { 'Authorization': 'JWT ' + localStorage.getItem('token') }
     })
