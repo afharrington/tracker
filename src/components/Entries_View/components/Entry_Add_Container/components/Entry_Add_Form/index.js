@@ -46,7 +46,11 @@ class EntryAddForm extends React.Component {
   // Converts time inputs to minutes and dispatches createEntry action creator
   // with form values, then exits the form and re-fetches entries for the stream
   onSubmit(values) {
+    if (!values.minutes) {
+      values.minutes = 0;
+    }
     let hoursInMinutes = values.hours * 60;
+
     let formattedValues = {
       content: values.content,
       minutes: Number(values.minutes) + Number(hoursInMinutes)
