@@ -7,10 +7,9 @@ class Welcome extends Component {
   render() {
     return (
       <div className="welcome">
-        <div>
-          Welcome! This landing page is shown to all visitors.
-          <Link to="/signup">Sign up for a free account</Link>
-        </div>
+        <div className="brand">TimeTiles</div>
+        <div className="tagline">Track the time you spend toward your goals</div>
+        <Link to="/signup"><div className="signup-link">Sign up</div></Link>
       </div>
     )
   }

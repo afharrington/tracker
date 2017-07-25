@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
-import { logoutUser } from '../../actions';
+import { unauthorizeUser } from '../../actions';
 import { connect } from "react-redux";
 
 import "./style.scss";
@@ -8,16 +8,16 @@ import "./style.scss";
 class Goodbye extends Component {
 
   componentWillMount() {
-    this.props.logoutUser();
+    this.props.unauthorizeUser();
   }
 
   render() {
     return (
-      <div>
-        Bye!
-    </div>
+      <div className="goodbye">
+        Goodbye! See you next time.
+      </div>
     )
   }
 }
 
-export default connect(null, { logoutUser })(Goodbye);
+export default connect(null, { unauthorizeUser })(Goodbye);

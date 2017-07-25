@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, Route, Redirect } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from "react-redux";
-import { loginUser, authError } from '../../actions';
+import { authorizeUser, authError } from '../../actions';
 
 import "./style.scss";
 
@@ -35,7 +35,7 @@ class Login extends Component {
 
   onSubmit(values) {
     // Will only be called if validated by redux form
-    this.props.loginUser(values, () => {
+    this.props.authorizeUser(values, () => {
       this.setState({ redirect: true });
     })
   }
@@ -49,6 +49,7 @@ class Login extends Component {
 
     return (
       <div className="login-form">
+        <div className="login-message">Sign in to your account</div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <Field
             label="Email"
@@ -93,5 +94,5 @@ export default reduxForm({
   validate,
   form: "LoginForm"
 })(
-  connect(mapStateToProps, { loginUser, authError })(Login)
+  connect(mapStateToProps, { authorizeUser, authError })(Login)
 );

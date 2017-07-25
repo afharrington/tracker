@@ -21,3 +21,15 @@
 .nav li:hover {
   color: $color-0;
 }
+
+.nav a {
+  color: white
+}
+
+.nav a:hover {
+  color: #00BCD4;
+}
+
+.nav a.active {
+  color: #00BCD4;
+}

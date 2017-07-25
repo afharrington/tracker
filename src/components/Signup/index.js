@@ -17,7 +17,7 @@ class Signup extends Component {
       <div>
         <input
           className={field.styleclass}
-          type="text"
+          type={field.type}
           placeholder={field.placeholder}
           {...field.input}
         />
@@ -42,14 +42,16 @@ class Signup extends Component {
     }
 
     return (
-      <div className="signup-form">
+      <div className="signup">
+        <div className="create-account-message">Create an account</div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <Field
             label="Email"
             name="email"
-            placeholder="Email"
+            placeholder="Enter your email"
             styleclass="email-field"
             component={this.renderField}
+            type="text"
           />
           <Field
             label="Password"
@@ -57,6 +59,7 @@ class Signup extends Component {
             placeholder="Password"
             styleclass="password-field"
             component={this.renderField}
+            type="password"
           />
           <Field
             label="Confirm password"
@@ -64,6 +67,7 @@ class Signup extends Component {
             placeholder="Confirm password"
             styleclass="confirm"
             component={this.renderField}
+            type="password"
           />
           <button className="signup-button" type="submit">Sign up</button>
         </form>

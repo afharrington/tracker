@@ -1,8 +1,16 @@
 @import "../../styles/main.scss";
 
 .login-form {
-  margin-top: 100px;
+  margin-top: 50px;
   text-align: center;
+}
+
+.login-message {
+  text-transform: uppercase;
+  font-size: 20px;
+  font-family: 'Lato', sans-serif;
+  margin-bottom: 50px;
+  color: #f44336;
 }
 
 .login-form input {
@@ -10,7 +18,8 @@
   width: 275px;
   height: 30px;
   margin: 10px;
-  border: gray solid 1px;
+  border: none;
+  border-bottom: gray solid 1px;
   padding: 5px;
 }
 
@@ -21,10 +30,14 @@
 }
 
 .login-button {
+  border: none;
+  border-radius: 3px;
   width: 290px;
-  height: 30px;
-  margin-top: 10px;
-  border-radius: 0px;
-  background-color: $color-5;
+  height: 50px;
+  margin-top: 20px;
+  background-color: #f44336;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: white;
   cursor: pointer;
 }

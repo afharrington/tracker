@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Link, Route, Switch, Redirect } from "react-router-dom";
+import { NavLink, Route, Switch, Redirect } from "react-router-dom";
 import "./style.scss";
 import EntriesView from '../Entries_View';
 import StreamsView from '../Streams_View';
 import Goodbye from '../Goodbye';
 import Login from '../Login';
 import Signup from '../Signup';
-import { logoutUser } from '../../actions';
+import { unauthorizeUser } from '../../actions';
 import { connect } from "react-redux";
 
 class Header extends Component {
@@ -16,27 +16,30 @@ class Header extends Component {
     if (this.props.authenticated) {
       return [
         <li key={1}>
-          <Link to="/app">Main</Link>
+          <NavLink to="/app">MyTiles</NavLink>
         </li>,
         <li>
-          <Link to="/goodbye">Logout</Link>
+          <NavLink to="/goodbye">Logout</NavLink>
         </li>
       ];
     // If not logged in, show links to log in or sign up for an account
     } else {
       return [
+        <li>
+          <NavLink to="/">TimeTiles</NavLink>
+        </li>,
         <li key={1}>
-          <Link to="/login">Log in</Link>
+          <NavLink to="/login">Log in</NavLink>
         </li>,
         <li className="nav-item" key={2}>
-          <Link to="/signup">Sign Up</Link>
+          <NavLink to="/signup">Sign Up</NavLink>
         </li>
       ];
     }
   }
 
   logout() {
-    this.props.logoutUser();
+    this.props.unauthorizeUser();
   }
 
   render() {
@@ -56,4 +59,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { logoutUser })(Header);
+export default connect(mapStateToProps, { unauthorizeUser })(Header);

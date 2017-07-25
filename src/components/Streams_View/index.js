@@ -1,6 +1,4 @@
-// StreamsView fetches all of the streams and renders the add stream form
-// (or hidden form) and stream tiles
-
+// StreamsView renders the stream tiles and add form
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Link, Route } from "react-router-dom"
@@ -11,7 +9,6 @@ import StreamAdd from "./components/Stream_Add_Container";
 import StreamTile from "./components/Stream_Tile";
 import EntriesView from "../Entries_View";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-
 
 import "../../styles/main.scss";
 import "./style.scss";
@@ -64,9 +61,26 @@ class StreamsView extends Component {
     });
   }
 
+  renderMessage() {
+    function isEmpty(obj) {
+      for (let key in obj) {
+        if(obj.hasOwnProperty(key))
+          return false;
+      }
+      return true;
+    }
+
+    if (isEmpty(this.props.streams) ) {
+      return (
+        <div className="streams-message">Add your first tile</div>
+      )
+    }
+  }
+
   render() {
     return (
       <div className="streams-view">
+          {this.renderMessage()}
         <div className="streams-grid">
           <StreamAdd />
           {this.renderStreamTiles()}

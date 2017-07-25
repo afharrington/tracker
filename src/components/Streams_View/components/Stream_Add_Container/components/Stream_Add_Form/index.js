@@ -16,18 +16,19 @@ class StreamAddForm extends React.Component {
   // This function responsible for actually rendering the field JSX
   renderField(field) {
     return (
-
       <div className="field-container">
       {field.meta.touched ? field.meta.error : ""}
         <input
           className="text-field"
           type="text"
           {...field.input}
+          placeholder="New tile name"
         />
       </div>
     );
   }
 
+  // Takes the userId from state, passes it along with the form values
   onSubmit(values) {
     this.props.createStream(values, () => {
       this.props.onExit();
@@ -46,9 +47,10 @@ class StreamAddForm extends React.Component {
             label="Name"
             name="name"
             component={this.renderField}
+            placeholder="Tile name"
           />
           <div className="button-container">
-            <button className="stream-add-button" type="submit">ADD</button>
+            <button className="submit-button" type="submit">ADD</button>
           </div>
         </form>
       </div>
@@ -59,14 +61,20 @@ class StreamAddForm extends React.Component {
 function validate(values) {
     const errors = {};
     if (!values.name) {
-      errors.name = "Enter a stream name";
+      errors.name = "Enter a tile name";
     }
     return errors;
+}
+
+function mapStateToProps(state) {
+  return {
+    user: state.auth.user
+  };
 }
 
 export default reduxForm({
   validate,
   form: "StreamAddForm"
 })(
-  connect(null, { createStream, fetchStreams })(StreamAddForm)
+  connect(mapStateToProps, { createStream, fetchStreams })(StreamAddForm)
 );

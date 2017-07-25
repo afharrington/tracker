@@ -11,23 +11,20 @@ export const DELETE_ENTRY = "delete_entry";
 
 export const AUTHORIZE_USER = "authorize_user";
 export const UNAUTHORIZE_USER = "unauthorize_user";
+// export const SET_USER = "set_user";
 export const AUTH_ERROR = "auth_error";
-export const LOGIN_USER = "login_user";
-export const LOGOUT_USER = "logout_user";
 
 const ROOT_URL = "http://localhost:3000";
 
-// Uses thunk middleware to return a function instead of an action
-export function loginUser({email, password}, callback) {
+export function authorizeUser({email, password}, callback) {
   return function(dispatch) {
     // Submits email and password to the server
     axios.post(`${ROOT_URL}/login`, { email, password })
       // If request is successful...
       .then(response => {
         // Update state to indicate user is authenticated
-        dispatch({ type: AUTHORIZE_USER, payload: response });
-          // Save the JWT token
-          localStorage.setItem('token', response.data.token);
+        dispatch({ type: AUTHORIZE_USER });
+        localStorage.setItem('token', response.data.token);
       })
       // Callback pushes user to the app route
       .then(() => callback())
@@ -39,7 +36,15 @@ export function loginUser({email, password}, callback) {
   }
 }
 
-export function logoutUser() {
+// ???
+// export function setUser(user) {
+//   return {
+//     type: SET_USER,
+//     payload: user
+//   }
+// }
+
+export function unauthorizeUser() {
   localStorage.removeItem('token');
   return { type: UNAUTHORIZE_USER }
 }
@@ -51,7 +56,7 @@ export function signupUser({email, password}, callback) {
       // If request is successful...
       .then((response) => {
         // Update state to indicate user is authenticated
-        dispatch({ type: AUTHORIZE_USER, payload: response});
+        dispatch({ type: AUTHORIZE_USER });
         // Save the JWT token
         localStorage.setItem('token', response.data.token);
       })
@@ -68,21 +73,36 @@ export function signupUser({email, password}, callback) {
   }
 }
 
+// Get streams for the user by sending the user's token in the header
 export function fetchStreams() {
-  const request = axios.get(`${ROOT_URL}`)
-    return {
-      type: FETCH_STREAMS,
-      payload: request
-    }
+  return function(dispatch) {
+    console.log("token", localStorage.getItem('token'));
+    axios.get(ROOT_URL, {
+      headers: { 'Authorization': 'JWT ' + localStorage.getItem('token') }
+    })
+      .then((response) => {
+        dispatch({ type: FETCH_STREAMS, payload: response })
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 }
 
+// Add a stream for the user by sending the user's token in the header
 export function createStream(values, callback) {
-  const request = axios.post(`${ROOT_URL}`, values)
-    .then(() => callback());
-  return {
-    type: CREATE_STREAM,
-    payload: request
-  };
+  return function(dispatch) {
+    axios.post(ROOT_URL, values, {
+      headers: { 'Authorization': 'JWT ' + localStorage.getItem('token') }
+  })
+    .then((response) => {
+      dispatch({ type: CREATE_STREAM, payload: response })
+    })
+    .then(() => callback())
+    .catch((error) => {
+      console.log(error);
+    })
+  }
 }
 
 export function deleteStream(id, callback) {
