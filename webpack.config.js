@@ -4,12 +4,12 @@ var webpack = require('webpack');
 module.exports = {
   entry: './src/index.js',
   output: {
-    path: __dirname,
-    publicPath: '/',
+    path: path.join(__dirname),
+    publicPath: '/public/',
     filename: 'bundle.js'
     },
   devServer: {
-    publicPath: '/',
+    publicPath: '/public/',
     contentBase: './',
     hot: true,
     historyApiFallback: true
