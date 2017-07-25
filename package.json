@@ -8,8 +8,9 @@
   "main": "index.js",
   "repository": "",
   "scripts": {
-    "dev": "webpack-dev-server --progress --inline --hot",
-    "postinstall": "webpack -p",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --progress --inline --hot",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "heroku-postbuild": "npm run build",
     "start": "node server.js"
   },
   "author": "",
@@ -22,6 +23,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "chai": "^3.5.0",
     "chai-jquery": "^2.0.0",
+    "cross-env": "^5.0.1",
     "css-loader": "^0.28.4",
     "jquery": "^2.2.1",
     "jsdom": "^8.1.0",
