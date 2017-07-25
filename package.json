@@ -2,7 +2,7 @@
   "name": "tracker",
   "version": "1.0.0",
   "engines": {
-  "node": "8.2.1"
+    "node": "8.2.1"
   },
   "description": "",
   "main": "index.js",
@@ -59,7 +59,6 @@
     "redux": "^3.0.4",
     "redux-form": "^6.8.0",
     "redux-promise": "^0.5.3",
-    "redux-thunk": "^2.2.0",
-    "webpack": "^1.12.9"
+    "redux-thunk": "^2.2.0"
   }
 }
