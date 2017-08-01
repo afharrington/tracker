@@ -35,7 +35,6 @@ export function authorizeUser({email, password}, callback) {
   }
 }
 
-
 export function unauthorizeUser() {
   localStorage.removeItem('token');
   return { type: UNAUTHORIZE_USER }

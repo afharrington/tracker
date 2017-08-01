@@ -9,9 +9,6 @@ import thunk from "redux-thunk";
 import logger from "redux-logger";
 
 import App from './App';
-import Welcome from './components/Welcome';
-import EntriesView from "./components/Entries_View";
-import StreamsView from "./components/Streams_View";
 
 import { AUTHORIZE_USER } from './actions';
 import reducers from "./reducers";

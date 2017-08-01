@@ -16,7 +16,7 @@ import "./styles/main.scss";
 class App extends Component {
   render() {
     return (
-      <div className="layout">
+      <div>
         <Header />
         <Switch>
           <Route path="/app/:streamId" component={EntriesView}/>

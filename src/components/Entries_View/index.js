@@ -90,6 +90,8 @@ class EntriesView extends Component {
     // let viewClassName = colorValue <= 8 ? `entries-view color-${colorValue}` : `entries-view color-8`;
     // let textClassName = this.props.stream.color >= 4 ? "light-text" : "dark-text";
 
+
+
     return (
       <div className="entries-view">
         <Link className="back" to="/app"><FontAwesome name='chevron-circle-left'/></Link>
