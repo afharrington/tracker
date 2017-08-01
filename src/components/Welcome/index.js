@@ -8,7 +8,7 @@ class Welcome extends Component {
     return (
       <div className="welcome">
         <div className="brand">
-          <img className="logo" src="../../../img/logo.png"/>
+          <img className="logo" src="./img/logo.png"/>
           <h1>TimeTiles</h1>
         </div>
         <div className="tagline">Track the time you spend toward your goals</div>
