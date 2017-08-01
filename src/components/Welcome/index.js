@@ -7,7 +7,10 @@ class Welcome extends Component {
   render() {
     return (
       <div className="welcome">
-        <div className="brand">TimeTiles</div>
+        <div className="brand">
+          <img className="logo" src="../../../img/logo.png"/>
+          <h1>TimeTiles</h1>
+        </div>
         <div className="tagline">Track the time you spend toward your goals</div>
         <Link to="/signup"><div className="signup-link">Sign up</div></Link>
       </div>

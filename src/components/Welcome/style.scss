@@ -4,13 +4,29 @@
 }
 
 .brand {
-  margin-left: 100px;
-  margin-top: 100px;
-  font-size: 48px;
+  position: relative;
+  width: 75%;
+  margin: 100px 0px 0px 50px;
+  height: 100px;
+
+  h1 {
+    display: inline-block;
+    height: 100%;
+    margin-bottom: 0px;
+    margin-top: 10px;
+    font-size: 65px
+  }
+}
+
+.logo {
+  display: inline-block;
+  height: 90px;
+  float: left;
 }
 
 .tagline {
-  margin-left: 100px;
+  display: inline-block;
+  margin-left: 75px;
   margin-top: 25px;
   font-size: 22px;
 }
