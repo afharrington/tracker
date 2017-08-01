@@ -55,10 +55,17 @@
   .welcome {
     text-align: center;
   }
+
   .brand {
-    margin-left: 0px;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 50px;
+    .logo {
+      margin-left: 35%;
+    }
   }
   .tagline {
+    display: inline-block;
     margin-left: 20px;
     margin-right: 20px;
   }
