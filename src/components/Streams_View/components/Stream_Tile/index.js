@@ -6,7 +6,7 @@ class StreamTile extends React.Component {
 
   constructor(props) {
     super(props);
-    let color = props.color <= 8 ? props.color : 8
+    let color = props.color <= 8 ? Math.floor(props.color) : 8
     let textColor = color <= 5 ? "dark-text" : "light-text";
 
     this.state = {

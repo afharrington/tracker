@@ -28,7 +28,7 @@ class StreamsView extends Component {
       // FOR TESTING let lastEntry = stream.entries[0] ? "Wed Jul 12 2017 16:10:02" : "";
 
       // For every 2 days since last entry, subtract -1 from color and send PUT request
-      // to mongo, then re-fetch all streams
+      // then re-fetch all streams
       if (lastEntry !== "") {
         let lastEntryDate = new Date(lastEntry);
         let oneDay = 24*60*60*1000;
@@ -42,6 +42,7 @@ class StreamsView extends Component {
           if (stream.color < 0) {
             stream.color = 0;
           }
+
           // Update the stream in Mongo
           this.props.updateColor(stream._id, { "color": stream.color}, fetchStreams());
         }
