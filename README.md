@@ -2,15 +2,18 @@
     <img src="./public/img/Logo.png" alt="TimeTiles logo" title="TimeTiles" align="right" height="60" />
 </a>
 
-# TimeTiles
-======================
+#TimeTiles
+
 TimeTiles allows you to track the time you spend toward your goals.
 
 ## Demo
 
-You can test the app live h<a href="https://timetiles.herokuapp.com/">here</a>.
+You can test the app live <a href="https://timetiles.herokuapp.com/">here</a>.
 
-Sign up for an account, or use email: test@email.com password: tiles
+Sign up for an account, or use the following:
+
+email: test@email.com
+password: tiles
 
 ## Setup
 
