@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --progress --inline --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
-    "heroku-postbuild": "npm run build",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build",
     "start": "node server.js"
   },
   "author": "",
